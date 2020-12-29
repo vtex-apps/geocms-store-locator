@@ -117,3 +117,4 @@ Check out some documentation models that are already live:
 **Upcoming documentation:**
 
  - [Add store blocks; Add messages](https://github.com/vtex-apps/geocms-store-locator/pull/1)
+ - [Fix app settings](https://github.com/vtex-apps/geocms-store-locator/pull/2)
