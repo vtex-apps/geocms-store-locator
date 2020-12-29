@@ -1,0 +1,90 @@
+type AllStoresResult {
+  results: [SitemapData]
+}
+
+type StoresResult {
+  results: [Stores]
+}
+
+type StoreResult {
+  results: Store
+  structuredData: String
+}
+
+type SitemapData {
+  name: String
+  state: String
+  postalCode: String
+  id: String
+}
+
+type Stores {
+  id: String
+  name: String
+  description: String
+  address: Address
+  googleMapLink: String
+  businessHours: [BusinessHour]
+  contacts: Contacts
+  location: Location
+}
+
+type Store {
+  id: String
+  name: String
+  description: String
+  logo: Image
+  address: Address
+  googleMapLink: String
+  businessHours: [BusinessHour]
+  holidayHours: [HolidayHour]
+  manager: String
+  contacts: Contacts
+  amenities: [Amenity]
+  location: Location
+  images: [Image]
+}
+
+type Address {
+  street: String
+  city: String
+  region: String
+  state: String
+  country: String
+  postalCode: String
+}
+
+type BusinessHour {
+  day: Int
+  openIntervals: [OpenInterval]
+  isClosed: Boolean
+}
+
+type HolidayHour {
+  date: String
+  openIntervals: [OpenInterval]
+  isClosed: Boolean
+}
+
+type OpenInterval {
+  open: String
+  close: String
+}
+
+type Contacts {
+  mainPhone: String
+}
+
+type Amenity {
+  label: String
+  value: String
+}
+
+type Location {
+  latitude: Float
+  longitude: Float
+}
+
+type Image {
+  url: String
+}
