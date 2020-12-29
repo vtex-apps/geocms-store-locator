@@ -23,9 +23,7 @@
     "vtex.render-runtime": "8.x",
     "vtex.css-handles": "0.x"
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "billingOptions": {
     "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
     "support": {
@@ -33,9 +31,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "policies": [
     {
@@ -53,7 +49,7 @@
     "title": "GeoCMS Store Locator",
     "type": "object",
     "properties": {
-      "appKey": {
+      "appLicense": {
         "type": "string",
         "title": "GeoCMS Key",
         "description": "Your GeoCMS Product License"
@@ -63,10 +59,10 @@
         "title": "GeoCMS Project",
         "description": "Name of the GeoCMS project from which you want to retrieve data"
       },
-      "appToken": {
+      "appKey": {
         "type": "string",
-        "title": "GeoCMS Token",
-        "description": "The GeoCMS digital signature to be attached to each REST request"
+        "title": "GeoCMS Signature Key",
+        "description": "The GeoCMS private encryption key to sign each REST request"
       },
       "clientName": {}
     }
