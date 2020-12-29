@@ -1,7 +1,9 @@
-import { ExternalClient, InstanceOptions, IOContext } from '@vtex/api'
 import crypto from 'crypto'
 
-import { GeoCMSResponse } from '../typings/stores'
+import type { InstanceOptions, IOContext } from '@vtex/api'
+import { ExternalClient } from '@vtex/api'
+
+import type { GeoCMSResponse } from '../typings/stores'
 
 interface GetStoresArgs {
   appLicense: string
@@ -49,8 +51,11 @@ export default class GeoCMS extends ExternalClient {
       latitude && longitude
         ? `&lat=${latitude}&lng=${longitude}&radius=${radius}`
         : ''
-    const endpoint = `/read/object/text?project=${appProject}&frontend=rest&key=${appLicense}&encoding=utf-8&offset=${offset ??
-      0}&hits=${quantity}${geoSearch}`
+
+    const endpoint = `/read/object/text?project=${appProject}&frontend=rest&key=${appLicense}&encoding=utf-8&offset=${
+      offset ?? 0
+    }&hits=${quantity}${geoSearch}`
+
     const signedEndpoint = `${endpoint}&tk=${this.getToken(appKey, endpoint)}`
 
     return this.http.get(signedEndpoint, {

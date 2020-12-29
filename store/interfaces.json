@@ -1,0 +1,43 @@
+{
+  "store-container": {
+    "component": "StoreContainer",
+    "composition": "children"
+  },
+  "store-locations": {
+    "component": "StoreLocations"
+  },
+  "store-address": {
+    "component": "StoreAddress",
+    "composition": "children"
+  },
+  "store-amenities": {
+    "component": "StoreAmenities",
+    "composition": "children"
+  },
+  "store-contacts": {
+    "component": "StoreContacts",
+    "composition": "children"
+  },
+  "store-hours": {
+    "component": "StoreHours",
+    "composition": "children"
+  },
+  "store-image-banner": {
+    "component": "StoreImageBanner",
+    "composition": "children"
+  },
+  "store-logo": {
+    "component": "StoreLogo",
+    "composition": "children"
+  },
+  "store-manager": {
+    "component": "StoreManager",
+    "composition": "children"
+  },
+  "store-map": {
+    "component": "StoreMap",
+    "composition": "children"
+  },
+  "store.storelocator": {},
+  "store.storedetail": {}
+}
