@@ -1,0 +1,34 @@
+query getStores($latitude: Float, $longitude: Float)
+@context(provider: "vtex.geocms-store-locator") {
+  stores(latitude: $latitude, longitude: $longitude) {
+    results {
+      id
+      name
+      description
+      address {
+        street
+        city
+        region
+        state
+        country
+        postalCode
+      }
+      googleMapLink
+      businessHours {
+        day
+        openIntervals {
+          open
+          close
+        }
+        isClosed
+      }
+      contacts {
+        mainPhone
+      }
+      location {
+        latitude
+        longitude
+      }
+    }
+  }
+}

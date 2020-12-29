@@ -1,0 +1,54 @@
+query getStore($id: String!, $amenities: [String])
+@context(provider: "vtex.geocms-store-locator") {
+  store(id: $id, amenities: $amenities) {
+    results {
+      id
+      name
+      description
+      logo {
+        url
+      }
+      address {
+        street
+        city
+        region
+        state
+        country
+        postalCode
+      }
+      googleMapLink
+      businessHours {
+        day
+        openIntervals {
+          open
+          close
+        }
+        isClosed
+      }
+      holidayHours {
+        date
+        openIntervals {
+          open
+          close
+        }
+        isClosed
+      }
+      manager
+      contacts {
+        mainPhone
+      }
+      amenities {
+        label
+        value
+      }
+      location {
+        latitude
+        longitude
+      }
+      images {
+        url
+      }
+    }
+    structuredData
+  }
+}
