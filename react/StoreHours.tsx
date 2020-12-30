@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
+import type { IntlShape } from 'react-intl'
 import {
   defineMessages,
   FormattedDate,
   FormattedMessage,
   injectIntl,
-  IntlShape,
 } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
@@ -12,10 +12,10 @@ import { StoreContext } from './contexts/StoreContext'
 
 const CSS_HANDLES = [
   'hoursContainer',
-  'normalHours',
-  'holidayHours',
+  'hoursNormalHours',
+  'hoursHolidayHours',
   'hoursLabel',
-  'holidayHoursLabel',
+  'hoursHolidayHoursLabel',
   'hoursRow',
   'hoursDayOfWeek',
   'hoursText',
@@ -49,7 +49,7 @@ const StoreHours: StorefrontFunctionComponent<StoreHoursProps> = ({ intl }) => {
 
   return (
     <div className={`${handles.hoursContainer} mh5`}>
-      <div className={handles.normalHours}>
+      <div className={handles.hoursNormalHours}>
         <div className={`b mb5 t-heading-6 ${handles.hoursLabel}`}>
           {
             <FormattedMessage id="store/geocms-store-locator.storeHours.hoursLabel" />
@@ -77,8 +77,10 @@ const StoreHours: StorefrontFunctionComponent<StoreHoursProps> = ({ intl }) => {
       </div>
 
       {store.holidayHours?.length > 0 && (
-        <div className={handles.holidayHours}>
-          <div className={`b mv5 t-heading-7 ${handles.holidayHoursLabel}`}>
+        <div className={handles.hoursHolidayHours}>
+          <div
+            className={`b mv5 t-heading-7 ${handles.hoursHolidayHoursLabel}`}
+          >
             <FormattedMessage id="store/geocms-store-locator.storeHours.holidayLabel" />
           </div>
           <div>

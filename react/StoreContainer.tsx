@@ -1,4 +1,5 @@
-import React, { ReactNode } from 'react'
+import type { ReactNode } from 'react'
+import React from 'react'
 import { useLazyQuery } from 'react-apollo'
 import { Helmet } from 'react-helmet'
 import { useRuntime } from 'vtex.render-runtime'
@@ -7,7 +8,7 @@ import { StoreContext } from './contexts/StoreContext'
 import GET_STORE from './graphql/GetStore.gql'
 
 interface StoreContainerProps {
-  amenities: string[]
+  amenities: string[] | undefined
   children: ReactNode
 }
 

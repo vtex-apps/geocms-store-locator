@@ -5,16 +5,7 @@ import { Slider } from 'vtex.store-components'
 
 import { StoreContext } from './contexts/StoreContext'
 
-const CSS_HANDLES = [
-  'customDataTextContainer',
-  'customDataTextListContainer',
-  'customDataTextListLabel',
-  'customDataTextList',
-  'customDataTextListItem',
-  'customDataImageContainer',
-  'customDataImageListContainer',
-  'customDataImageListItem',
-] as const
+const CSS_HANDLES = ['imageBannerContainer', 'imageBannerListItem'] as const
 
 const StoreImageBanner: StorefrontFunctionComponent = () => {
   const handles = useCssHandles(CSS_HANDLES)
@@ -35,10 +26,10 @@ const StoreImageBanner: StorefrontFunctionComponent = () => {
   }
 
   return (
-    <div className={`${handles.customDataImageListContainer}`}>
+    <div className={`${handles.imageBannerContainer}`}>
       <Slider sliderSettings={sliderSettings}>
         {store.images.map((image, i) => (
-          <div className={`${handles.customDataImageListItem}`} key={i}>
+          <div className={`${handles.imageBannerListItem}`} key={i}>
             <img src={image.url} alt="Store" />
           </div>
         ))}
