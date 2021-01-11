@@ -29,6 +29,8 @@
   "admin/editor.storeMapIconWidth.description": "Set map pin icon width",
   "admin/editor.storeMapIconHeight.title": "Map Icon Height",
   "admin/editor.storeMapIconHeight.description": "Set map pin icon height",
+  "admin/editor.storeTitle.title": "Store Name",
+  "admin/editor.storeTitle.description": "Display store name",
   "store/geocms-store-locator.listing.directions": "Directions",
   "store/geocms-store-locator.listing.empty": "No nearby stores",
   "store/geocms-store-locator.pinpoints.directions": "directions",

@@ -38,6 +38,10 @@
     "component": "StoreMap",
     "composition": "children"
   },
+  "store-title": {
+    "component": "StoreTitle",
+    "composition": "children"
+  },
   "store.storelocator": {},
   "store.storedetail": {}
 }
