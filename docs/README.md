@@ -75,6 +75,7 @@ The GeoCMS Store Locator app provides the following blocks for your use:
 | `store-logo`         | Show the store logo.                                                                  |
 | `store-manager`      | Show the store manager name.                                                          |
 | `store-map`          | Map component to be used on the store detail page. Shows the viewed store's location. |
+| `store-title`        | Show the store name.                                                                  |
 
 1. In the `store` folder of your Store Theme, create a new file called `store-locator.json`.
 2. Use the example block structure below to layout your Store Locator and Store Detail pages.
@@ -107,28 +108,17 @@ The GeoCMS Store Locator app provides the following blocks for your use:
   },
   "store-container": {
     "children": [
-      "flex-layout.row#titleStore",
+      "flex-layout.row#storeTitle",
       "flex-layout.row#containerStore"
     ],
     "props": {
       "amenities": ["parking", "pharmacy", "laundry"]
     }
   },
-  "flex-layout.row#titleStore": {
-    "children": ["flex-layout.col#titleStore"],
+  "flex-layout.row#storeTitle": {
+    "children": ["store-title"],
     "props": {
       "fullWidth": true
-    }
-  },
-  "flex-layout.col#titleStore": {
-    "children": ["rich-text#titleStore"],
-    "props": {
-      "preventVerticalStretch": true
-    }
-  },
-  "rich-text#titleStore": {
-    "props": {
-      "text": "## Store Detail"
     }
   },
   "flex-layout.row#containerStore": {
@@ -249,6 +239,7 @@ The GeoCMS Store Locator app provides the following blocks for your use:
 | `markerInfoDirectionsLink`      |
 | `markerInfoStoreName`           |
 | `markerInfoAddress`             |
+| `titleText`                     |
 
 <!-- DOCS-IGNORE:start -->
 

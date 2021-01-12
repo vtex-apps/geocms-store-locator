@@ -29,6 +29,8 @@
   "admin/editor.storeMapIconWidth.description": "admin/editor.storeMapIconWidth.description",
   "admin/editor.storeMapIconHeight.title": "admin/editor.storeMapIconHeight.title",
   "admin/editor.storeMapIconHeight.description": "admin/editor.storeMapIconHeight.description",
+  "admin/editor.storeTitle.title": "admin/editor.storeTitle.title",
+  "admin/editor.storeTitle.description": "admin/editor.storeTitle.description",
   "store/geocms-store-locator.listing.directions": "store/geocms-store-locator.listing.directions",
   "store/geocms-store-locator.listing.empty": "store/geocms-store-locator.listing.empty",
   "store/geocms-store-locator.pinpoints.directions": "store/geocms-store-locator.pinpoints.directions",

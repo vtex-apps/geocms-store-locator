@@ -198,5 +198,6 @@ interface image {
 }
 
 interface siteMapStoreData {
+  id: string
   url: string
 }

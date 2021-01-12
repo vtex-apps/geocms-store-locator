@@ -38,9 +38,8 @@ export const allStores = async (
       const { cod_mag } = obj.data.main
 
       stores.push({
-        url: `https://${ctx.vtex.host}/store/${parseStoreParams(
-          Store_name
-        )}/${cod_mag}`,
+        id: cod_mag,
+        url: `https://${ctx.vtex.host}/store/${parseStoreParams(Store_name)}`,
       })
 
       return stores
