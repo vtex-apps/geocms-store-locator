@@ -1,12 +1,31 @@
 import { GraphQLError } from '../graphql/GraphQLError'
 import { formatBusinessHours } from '../utils/formatBusinessHours'
 import { parseStoreParams } from '../utils/parseStoreParams'
+import { queries } from '.'
 import {
   GeoCMSResponse,
   HolidayHours,
   StoreDetail,
   StoreGraphQL,
 } from '../typings/stores'
+
+const storeIdLookup: { [key: string]: string } = {}
+
+const setstoreIdLookupTable = async (ctx: Context) => {
+  try {
+    const { results } = await queries.allStores(null, null, ctx)
+
+    for (const store of results) {
+      const parts = store.url.split('/')
+
+      storeIdLookup[parts[parts.length - 1]] = store.id
+    }
+  } catch (err) {
+    ctx.vtex.logger.error({
+      message: 'Error creating store ID lookup table',
+    })
+  }
+}
 
 export const store = async (
   _: any,
@@ -21,6 +40,10 @@ export const store = async (
   const appId = process.env.VTEX_APP_ID as string
   const { appLicense, appProject, appKey } = await apps.getAppSettings(appId)
 
+  if (!storeIdLookup[id]) {
+    await setstoreIdLookupTable(ctx)
+  }
+
   let response: GeoCMSResponse
 
   try {
@@ -28,7 +51,7 @@ export const store = async (
       appLicense,
       appProject,
       appKey,
-      id,
+      id: storeIdLookup[id],
     })
   } catch (error) {
     throw new TypeError(error.msg)
@@ -45,13 +68,12 @@ export const store = async (
   }
 
   const mktg = response.layers[0].objects[0].data.MKTG[0]
-  const main = response.layers[0].objects[0].data.main
   const specialHours = response.layers[0].objects[0].data.SPECIAL_HOURS
   const img = response.layers[0].objects[0].data.IMG
   const { lng, lat } = response.layers[0].objects[0].geom
 
   const store: StoreDetail = {
-    id: main.cod_mag,
+    id: parseStoreParams(mktg.Store_name),
     name: mktg.Store_name,
     description: mktg.description,
     logo: null,
@@ -145,9 +167,7 @@ export const store = async (
         latitude,
         longitude,
       },
-      url: `https://${ctx.vtex.host}/store/${parseStoreParams(
-        mktg.Store_name
-      )}/${main.cod_mag}`,
+      url: `https://${ctx.vtex.host}/store/${store.id}`,
       openingHoursSpecification: store.businessHours.reduce(
         (schema: any[], hours) => {
           hours.openIntervals.forEach(i => {

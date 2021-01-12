@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react'
-import { FormattedMessage, injectIntl, IntlShape } from 'react-intl'
+import type { IntlShape } from 'react-intl'
+import { FormattedMessage, injectIntl } from 'react-intl'
 import {
   GoogleMap,
   Marker,
@@ -10,13 +11,8 @@ import {
   withScriptjs,
   InfoWindow,
 } from 'react-google-maps'
-import slugify from 'slugify'
 import { useRuntime } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
-
-const Slugify = (str: string) => {
-  return slugify(str, { lower: true, remove: /[*+~.()'"!:@]/g })
-}
 
 const CSS_HANDLES = [
   'markerInfo',
@@ -71,7 +67,6 @@ const Pinpoints = withScriptjs(
       navigate({
         page: 'store.storedetail',
         params: {
-          slug: `${Slugify(item.name)}`,
           store_id: item.id,
         },
       })

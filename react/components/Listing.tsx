@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
-import slugify from 'slugify'
 import { Link } from 'vtex.render-runtime'
 import { useCssHandles } from 'vtex.css-handles'
 import { FormattedMessage } from 'react-intl'
@@ -21,10 +20,6 @@ const CSS_HANDLES = [
   'storeListDirectionsLink',
   'storeListEmptyState',
 ] as const
-
-const Slugify = (str: string) => {
-  return slugify(str, { lower: true, remove: /[*+~.()'"!:@]/g })
-}
 
 interface ListingProps {
   items: Store[]
@@ -68,7 +63,6 @@ const Listing: StorefrontFunctionComponent<ListingProps> = ({
                     className={`${handles.storeListStoreLink} b no-underline underline-hover`}
                     page="store.storedetail"
                     params={{
-                      slug: Slugify(item.name),
                       store_id: item.id,
                     }}
                   >
