@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "geocms-store-locator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "GeoCMS Store Locator",
   "description": "Use GeoCMS data to add a store locator and individual store pages to your VTEX store",
   "builders": {
