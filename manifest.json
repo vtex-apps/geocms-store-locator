@@ -23,9 +23,7 @@
     "vtex.render-runtime": "8.x",
     "vtex.css-handles": "0.x"
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "billingOptions": {
     "termsURL": "https://compliance.vtex.com/gdpr/policies/vtex-privacy-policy",
     "support": {
@@ -33,9 +31,7 @@
     },
     "free": true,
     "type": "free",
-    "availableCountries": [
-      "*"
-    ]
+    "availableCountries": ["*"]
   },
   "policies": [
     {
@@ -68,7 +64,12 @@
         "title": "GeoCMS Signature Key",
         "description": "The GeoCMS private encryption key to sign each REST request"
       },
-      "clientName": {}
+      "customPath": {
+        "type": "string",
+        "title": "Store Page URL Path",
+        "description": "Change the default path used in the store page URL",
+        "default": "store"
+      }
     }
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

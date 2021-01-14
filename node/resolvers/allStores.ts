@@ -13,7 +13,12 @@ export const allStores = async (
   } = ctx
 
   const appId = process.env.VTEX_APP_ID as string
-  const { appLicense, appProject, appKey } = await apps.getAppSettings(appId)
+  const {
+    appLicense,
+    appProject,
+    appKey,
+    customPath,
+  } = await apps.getAppSettings(appId)
 
   const locations: siteMapStoreData[] = []
 
@@ -39,7 +44,9 @@ export const allStores = async (
 
       stores.push({
         id: cod_mag,
-        url: `https://${ctx.vtex.host}/store/${parseStoreParams(Store_name)}`,
+        url: `https://${ctx.vtex.host}/${customPath}/${parseStoreParams(
+          Store_name
+        )}`,
       })
 
       return stores
