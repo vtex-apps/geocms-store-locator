@@ -50,9 +50,11 @@ Before performing the following actions, make sure you are already logged into t
     "isSitemapEntry": true
 },
 "store.storedetail": {
-	"path": "/store/:slug/:store_id"
+	"path": "/store/:store_id"
 }
 ```
+
+> ℹ️ _You may change the default `store` in the store.storedetail route to another string of your choosing; you must also include this change in the app Settings to ensure the correct URL is indexed by search engines._
 
 | Store page           | Description                                                                                   |
 | -------------------- | --------------------------------------------------------------------------------------------- |

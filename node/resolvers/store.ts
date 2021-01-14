@@ -38,7 +38,12 @@ export const store = async (
   } = ctx
 
   const appId = process.env.VTEX_APP_ID as string
-  const { appLicense, appProject, appKey } = await apps.getAppSettings(appId)
+  const {
+    appLicense,
+    appProject,
+    appKey,
+    customPath,
+  } = await apps.getAppSettings(appId)
 
   if (!storeIdLookup[id]) {
     await setstoreIdLookupTable(ctx)
@@ -72,7 +77,7 @@ export const store = async (
   const img = response.layers[0].objects[0].data.IMG
   const { lng, lat } = response.layers[0].objects[0].geom
 
-  const store: StoreDetail = {
+  const storeDetail: StoreDetail = {
     id: parseStoreParams(mktg.Store_name),
     name: mktg.Store_name,
     description: mktg.description,
@@ -137,7 +142,7 @@ export const store = async (
   }
 
   const structuredData = () => {
-    const { longitude, latitude } = store.location
+    const { longitude, latitude } = storeDetail.location
     const weekDays = [
       'Sunday',
       'Monday',
@@ -150,25 +155,25 @@ export const store = async (
     return {
       '@context': 'https://schema.org',
       '@type': 'Store',
-      '@id': `https://${ctx.vtex.host}/store/${store.id}`,
-      name: store.name,
-      image: store.images.map(i => i.url),
-      telephone: store.contacts.mainPhone,
+      '@id': `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
+      name: storeDetail.name,
+      image: storeDetail.images.map(i => i.url),
+      telephone: storeDetail.contacts.mainPhone,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: store.address.street,
-        addressLocality: store.address.city,
-        addressRegion: store.address.state,
-        postalCode: store.address.postalCode,
-        addressCountry: store.address.country,
+        streetAddress: storeDetail.address.street,
+        addressLocality: storeDetail.address.city,
+        addressRegion: storeDetail.address.state,
+        postalCode: storeDetail.address.postalCode,
+        addressCountry: storeDetail.address.country,
       },
       geo: {
         '@type': 'GeoCoordinates',
         latitude,
         longitude,
       },
-      url: `https://${ctx.vtex.host}/store/${store.id}`,
-      openingHoursSpecification: store.businessHours.reduce(
+      url: `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
+      openingHoursSpecification: storeDetail.businessHours.reduce(
         (schema: any[], hours) => {
           hours.openIntervals.forEach(i => {
             const [opensHour, opensMinute] = i.open.split(':')
@@ -188,5 +193,8 @@ export const store = async (
     }
   }
 
-  return { results: store, structuredData: JSON.stringify(structuredData()) }
+  return {
+    results: storeDetail,
+    structuredData: JSON.stringify(structuredData()),
+  }
 }
