@@ -2,9 +2,6 @@
   "name": "node",
   "version": "0.0.5",
   "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
