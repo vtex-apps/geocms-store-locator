@@ -1,11 +1,10 @@
-import {
+import type {
   ClientsConfig,
-  LRUCache,
-  Service,
   ServiceContext,
   ParamsContext,
   RecorderState,
 } from '@vtex/api'
+import { LRUCache, Service } from '@vtex/api'
 
 import { Clients } from './clients'
 import { queries } from './resolvers'
@@ -13,8 +12,8 @@ import { routes } from './routes/routes'
 
 const TIMEOUT_MS = 800
 
-// Create a LRU memory cache for the client.
 // The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
 metrics.trackCache('reviews', memoryCache)

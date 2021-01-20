@@ -156,6 +156,8 @@ The GeoCMS Store Locator app provides the following blocks for your use:
 | ----------- | ------- | ------------------------------------------------------------------------------------------ | ------------- |
 | `amenities` | `array` | Array of strings declaring the GeoCMS property names that represent the store's amenities. | `undefined`   |
 
+The listed store amenities will be populated when the `store-amenities` block is used. Amenities properties with no value or a value of "false" or "no" in your GeoCMS data, will not be displayed on the store page.
+
 ### `store-locations` props
 
 | Prop name    | Type     | Description                                                                                                   | Default value |

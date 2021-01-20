@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { ChangeEvent, Dispatch, useState } from 'react'
+import type { ChangeEvent, Dispatch } from 'react'
+import React, { useState } from 'react'
 import { withScriptjs } from 'react-google-maps'
 import StandaloneSearchBox from 'react-google-maps/lib/components/places/StandaloneSearchBox'
 import { InputSearch } from 'vtex.styleguide'
@@ -45,5 +46,4 @@ const Search = ({ query, setQuery }: SearchProps) => {
   )
 }
 
-// @ts-ignore
-export default withScriptjs<SearchProps>(Search)
+export default withScriptjs<SearchProps>(Search as any)

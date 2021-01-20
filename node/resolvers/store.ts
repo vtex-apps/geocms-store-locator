@@ -2,7 +2,7 @@ import { GraphQLError } from '../graphql/GraphQLError'
 import { formatBusinessHours } from '../utils/formatBusinessHours'
 import { parseStoreParams } from '../utils/parseStoreParams'
 import { queries } from '.'
-import {
+import type {
   GeoCMSResponse,
   HolidayHours,
   StoreDetail,
@@ -28,6 +28,7 @@ const setstoreIdLookupTable = async (ctx: Context) => {
 }
 
 export const store = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _: any,
   args: { id: string; amenities: string[] },
   ctx: Context
@@ -72,7 +73,7 @@ export const store = async (
     return { results: null, structuredData: '' }
   }
 
-  const mktg = response.layers[0].objects[0].data.MKTG[0]
+  const [mktg] = response.layers[0].objects[0].data.MKTG
   const specialHours = response.layers[0].objects[0].data.SPECIAL_HOURS
   const img = response.layers[0].objects[0].data.IMG
   const { lng, lat } = response.layers[0].objects[0].geom
@@ -81,7 +82,6 @@ export const store = async (
     id: parseStoreParams(mktg.Store_name),
     name: mktg.Store_name,
     description: mktg.description,
-    logo: null,
     address: {
       street: mktg.address,
       city: mktg.city,
@@ -93,24 +93,24 @@ export const store = async (
     googleMapLink: `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`,
     businessHours: formatBusinessHours(mktg),
     holidayHours: specialHours.reduce((hours: HolidayHours[], specialHour) => {
-      let current = {
+      const current = {
         date: specialHour.Date,
         openIntervals: [],
         isClosed: false,
       } as HolidayHours
 
       if (!specialHour.open_morning && !specialHour.open_afternoon) {
-        if (specialHour['open_morning'] && specialHour['close_morning']) {
+        if (specialHour.open_morning && specialHour.close_morning) {
           current.openIntervals.push({
-            open: specialHour['open_morning'],
-            close: specialHour['close_morning'],
+            open: specialHour.open_morning,
+            close: specialHour.close_morning,
           })
         }
 
-        if (specialHour['open_afternoon'] && specialHour['close_afternoon']) {
+        if (specialHour.open_afternoon && specialHour.close_afternoon) {
           current.openIntervals.push({
-            open: specialHour['open_afternoon'],
-            close: specialHour['close_afternoon'],
+            open: specialHour.open_afternoon,
+            close: specialHour.close_afternoon,
           })
         }
       } else {
@@ -118,16 +118,22 @@ export const store = async (
       }
 
       hours.push(current)
+
       return hours
     }, []),
     manager: mktg.Area_manager,
     contacts: {
       mainPhone: mktg.Store_phone,
     },
-    amenities: amenities.map(amenity => ({
-      label: amenity,
-      value: mktg[amenity],
-    })),
+    amenities: amenities.map((amenity) => {
+      const value = (mktg[amenity] as string).toLowerCase()
+      const hasAmenity = value !== '' && value !== 'no' && value !== 'false'
+
+      return {
+        label: amenity,
+        value: hasAmenity,
+      }
+    }),
     location: {
       latitude: lat,
       longitude: lng,
@@ -152,12 +158,13 @@ export const store = async (
       'Friday',
       'Saturday',
     ]
+
     return {
       '@context': 'https://schema.org',
       '@type': 'Store',
       '@id': `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
       name: storeDetail.name,
-      image: storeDetail.images.map(i => i.url),
+      image: storeDetail.images.map((i) => i.url),
       telephone: storeDetail.contacts.mainPhone,
       address: {
         '@type': 'PostalAddress',
@@ -174,8 +181,8 @@ export const store = async (
       },
       url: `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
       openingHoursSpecification: storeDetail.businessHours.reduce(
-        (schema: any[], hours) => {
-          hours.openIntervals.forEach(i => {
+        (schema: Array<Record<string, string | string[]>>, hours) => {
+          hours.openIntervals.forEach((i) => {
             const [opensHour, opensMinute] = i.open.split(':')
             const [closesHour, closesMinute] = i.close.split(':')
 
@@ -186,6 +193,7 @@ export const store = async (
               closes: `${closesHour}:${closesMinute}`,
             })
           })
+
           return schema
         },
         []

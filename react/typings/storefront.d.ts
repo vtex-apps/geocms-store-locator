@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import { FunctionComponent } from 'react'
+import type { FunctionComponent } from 'react'
 
 declare global {
   interface StorefrontFunctionComponent<P = {}> extends FunctionComponent<P> {

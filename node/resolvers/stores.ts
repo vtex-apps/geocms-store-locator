@@ -1,10 +1,11 @@
+import { LogLevel } from '@vtex/api'
+
 import { GraphQLError } from '../graphql/GraphQLError'
 import { formatBusinessHours } from '../utils/formatBusinessHours'
-import { GeoCMSResponse, Store, StoresGraphQL } from '../typings/stores'
-import { LogLevel } from '@vtex/api'
+import type { GeoCMSResponse, Store, StoresGraphQL } from '../typings/stores'
 import { parseStoreParams } from '../utils/parseStoreParams'
 
-interface storesArgs {
+interface StoresArgs {
   latitude?: number
   longitude?: number
   offset: number
@@ -14,8 +15,9 @@ const DEFAULT_STORES_QUANTITY = 30
 const DEFAULT_SEARCH_RADIUS = 25000
 
 export const stores = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _: any,
-  args: storesArgs,
+  args: StoresArgs,
   ctx: Context
 ): Promise<StoresGraphQL> => {
   const {
@@ -61,16 +63,16 @@ export const stores = async (
     throw new GraphQLError(message, code)
   }
 
-  const stores = response.layers[0].objects.reduce(
-    (stores: Store[], { data, geom }) => {
+  const results = response.layers[0].objects.reduce(
+    (storesData: Store[], { data, geom }) => {
       if (!data.MKTG) {
-        return stores
+        return storesData
       }
 
-      const mktg = data.MKTG[0]
+      const [mktg] = data.MKTG
       const { lng, lat } = geom
 
-      stores.push({
+      storesData.push({
         id: parseStoreParams(mktg.Store_name),
         name: mktg.Store_name,
         description: mktg.description,
@@ -92,9 +94,11 @@ export const stores = async (
           longitude: lng,
         },
       })
-      return stores
+
+      return storesData
     },
     []
   )
-  return { results: stores }
+
+  return { results }
 }

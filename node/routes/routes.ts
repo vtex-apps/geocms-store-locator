@@ -1,4 +1,5 @@
 import { method } from '@vtex/api'
+
 import { queries } from '../resolvers'
 
 export const routes = {
@@ -14,7 +15,7 @@ export const routes = {
           const storesMap = `
                 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
                   ${response.results
-                    .map(store => {
+                    .map((store) => {
                       return `<url>
                     <loc>${store.url}</loc>
                     <lastmod>${lastMod}</lastmod>

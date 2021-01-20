@@ -77,7 +77,7 @@ type Contacts {
 
 type Amenity {
   label: String
-  value: String
+  value: Boolean
 }
 
 type Location {

@@ -2591,10 +2591,6 @@ vary@^1.1.2:
   version "0.15.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.flex-layout@0.15.2/public/@types/vtex.flex-layout#1b3e061cec4711dea3a0b98ce3d0434fdcca890b"
 
-"vtex.geocms-store-locator@https://sdb--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.geocms-store-locator@0.0.0+build1609265211/public/@types/vtex.geocms-store-locator":
-  version "0.0.0"
-  resolved "https://sdb--sandboxusdev.myvtex.com/_v/private/typings/linked/v1/vtex.geocms-store-locator@0.0.0+build1609265211/public/@types/vtex.geocms-store-locator#f5255139c86aedef943f3fc99da2a1dc5d4868c4"
-
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.5/public/@types/vtex.render-runtime":
   version "8.126.5"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.126.5/public/@types/vtex.render-runtime#f529e960313579c39a9748820885b995f9d6d3e6"

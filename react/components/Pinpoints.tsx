@@ -39,7 +39,7 @@ interface PinpointProps {
 
 const Pinpoints = withScriptjs(
   withGoogleMap<PinpointProps>((props) => {
-    const [state, setState] = useState({
+    const [state, setState] = useState<any>({
       markerState: {},
     })
 
@@ -48,7 +48,6 @@ const Pinpoints = withScriptjs(
     const { navigate } = useRuntime()
 
     const handleMarkState = (id: string) => {
-      // @ts-ignore
       const markerState = !state.markerState[id]
         ? {
             [id]: true,
@@ -100,7 +99,6 @@ const Pinpoints = withScriptjs(
                 handleMarkState(item.id)
               }}
             >
-              {/* @ts-ignore */}
               {(state.markerState[item.id] ||
                 (Object.getOwnPropertyNames(state.markerState).length === 0 &&
                   lat === latitude &&
