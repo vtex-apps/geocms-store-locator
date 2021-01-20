@@ -1,4 +1,5 @@
-import { SiteMapStoreData } from '../typings/stores'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { SiteMapStoreData } from '../typings/stores'
 import { parseStoreParams } from '../utils/parseStoreParams'
 
 const API_MAX_QUANTITY = 50
@@ -27,6 +28,7 @@ export const allStores = async (
   let total = 0
 
   do {
+    // eslint-disable-next-line no-await-in-loop
     const response = await geoCMS.getStores({
       appLicense,
       appProject,
@@ -39,6 +41,7 @@ export const allStores = async (
       if (!obj.data.MKTG) {
         return stores
       }
+
       const [{ Store_name: storeName }] = obj.data.MKTG
       const { cod_mag: codMag } = obj.data.main
 
@@ -57,7 +60,7 @@ export const allStores = async (
     }
 
     total = response.total
-    offset = offset + API_MAX_QUANTITY
+    offset += API_MAX_QUANTITY
   } while (total > offset)
 
   return { results: locations }

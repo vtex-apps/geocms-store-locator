@@ -28,6 +28,7 @@ const setstoreIdLookupTable = async (ctx: Context) => {
 }
 
 export const store = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _: any,
   args: { id: string; amenities: string[] },
   ctx: Context

@@ -1,4 +1,4 @@
-import { DocumentNode } from 'graphql'
+import type { DocumentNode } from 'graphql'
 
 declare module '*.gql' {
   const Schema: DocumentNode

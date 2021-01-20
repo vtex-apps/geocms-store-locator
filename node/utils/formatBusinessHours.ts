@@ -1,4 +1,4 @@
-import { BusinessHours, Mktg } from '../typings/stores'
+import type { BusinessHours, Mktg } from '../typings/stores'
 
 const DAY = {
   sunday: 0,
@@ -12,11 +12,12 @@ const DAY = {
 
 export const formatBusinessHours = (mktg: Mktg) => {
   return Object.keys(DAY).reduce((hours: BusinessHours[], day) => {
-    let current = {
+    const current = {
       day: DAY[day as keyof typeof DAY],
       openIntervals: [],
       isClosed: false,
     } as BusinessHours
+
     if (mktg[`${day}_open`] && mktg[`${day}_close`]) {
       if (mktg[`${day}_morning_close`] && mktg[`${day}_afternoon_open`]) {
         current.openIntervals.push({
