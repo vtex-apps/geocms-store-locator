@@ -88,7 +88,8 @@ interface Mktg {
   'Tipo mobile cassa (metallo o legno) e numero': string
   'Vetrine espositive': string
   Toelettatura: string
-  [key: string]: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
 }
 
 interface GeoCMSSocial {
