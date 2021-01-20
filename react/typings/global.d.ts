@@ -72,7 +72,7 @@ interface Social {
 
 interface Amenity {
   label: string
-  value: string
+  value: boolean
 }
 
 interface StoreLocation {

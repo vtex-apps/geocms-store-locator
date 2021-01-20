@@ -27,7 +27,7 @@ interface StoreData {
   SPECIAL_HOURS: SpecialHours[]
   IMG?: Img[]
   MKTG?: Mktg[]
-  social: geoCMSSocial[]
+  social: GeoCMSSocial[]
   facebook: Facebook[]
   main: Main
   SEO: Seo[]
@@ -88,10 +88,10 @@ interface Mktg {
   'Tipo mobile cassa (metallo o legno) e numero': string
   'Vetrine espositive': string
   Toelettatura: string
-  [key: string]: any
+  [key: string]: string
 }
 
-interface geoCMSSocial {
+interface GeoCMSSocial {
   gmb_id: string
 }
 
@@ -149,7 +149,6 @@ interface StoreDetail extends Store {
   amenities: Amenities[]
   holidayHours: HolidayHours[]
   manager: string
-  logo: Image
   images: Image[]
 }
 
@@ -185,7 +184,7 @@ interface Contacts {
 
 interface Amenities {
   label: string
-  value: string
+  value: boolean
 }
 
 interface Location {
@@ -193,11 +192,11 @@ interface Location {
   longitude: number
 }
 
-interface image {
+interface Image {
   url: string
 }
 
-interface siteMapStoreData {
+interface SiteMapStoreData {
   id: string
   url: string
 }

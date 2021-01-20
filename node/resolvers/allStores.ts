@@ -1,4 +1,4 @@
-import { siteMapStoreData } from '../typings/stores'
+import { SiteMapStoreData } from '../typings/stores'
 import { parseStoreParams } from '../utils/parseStoreParams'
 
 const API_MAX_QUANTITY = 50
@@ -7,7 +7,7 @@ export const allStores = async (
   _: any,
   _param: any,
   ctx: Context
-): Promise<{ results: siteMapStoreData[] }> => {
+): Promise<{ results: SiteMapStoreData[] }> => {
   const {
     clients: { apps, geoCMS },
   } = ctx
@@ -20,7 +20,7 @@ export const allStores = async (
     customPath,
   } = await apps.getAppSettings(appId)
 
-  const locations: siteMapStoreData[] = []
+  const locations: SiteMapStoreData[] = []
 
   const quantity = API_MAX_QUANTITY
   let offset = 0
@@ -39,13 +39,13 @@ export const allStores = async (
       if (!obj.data.MKTG) {
         return stores
       }
-      const { Store_name } = obj.data.MKTG[0]
-      const { cod_mag } = obj.data.main
+      const [{ Store_name: storeName }] = obj.data.MKTG
+      const { cod_mag: codMag } = obj.data.main
 
       stores.push({
-        id: cod_mag,
+        id: codMag,
         url: `https://${ctx.vtex.host}/${customPath}/${parseStoreParams(
-          Store_name
+          storeName
         )}`,
       })
 
