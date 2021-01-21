@@ -16,7 +16,7 @@ const TIMEOUT_MS = 800
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
-metrics.trackCache('reviews', memoryCache)
+metrics.trackCache('geocms', memoryCache)
 
 // This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {

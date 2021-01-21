@@ -126,8 +126,12 @@ export const store = async (
       mainPhone: mktg.Store_phone,
     },
     amenities: amenities.map((amenity) => {
-      const value = (mktg[amenity] as string).toLowerCase()
-      const hasAmenity = value !== '' && value !== 'no' && value !== 'false'
+      const value: string | undefined = mktg[amenity]?.toLowerCase()
+      const hasAmenity =
+        value !== 'undefined' &&
+        value !== '' &&
+        value !== 'no' &&
+        value !== 'false'
 
       return {
         label: amenity,

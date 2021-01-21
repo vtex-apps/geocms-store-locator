@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Check for undefined store amenity values
+
 ## [0.0.6] - 2021-01-20
 
 ### Fixed
