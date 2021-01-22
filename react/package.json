@@ -1,6 +1,6 @@
 {
   "name": "geocms-store-locator",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "test": "vtex-test-tools test"
   },
