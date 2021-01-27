@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { SiteMapStoreData } from '../typings/stores'
-import { parseStoreParams } from '../utils/parseStoreParams'
 
 const API_MAX_QUANTITY = 50
 
@@ -42,14 +41,10 @@ export const allStores = async (
         return stores
       }
 
-      const [{ Store_name: storeName }] = obj.data.MKTG
-      const { cod_mag: codMag } = obj.data.main
+      const [{ page_id: pageId }] = obj.data.SEO
 
       stores.push({
-        id: codMag,
-        url: `https://${ctx.vtex.host}/${customPath}/${parseStoreParams(
-          storeName
-        )}`,
+        url: `https://${ctx.vtex.host}/${customPath}/${pageId}`,
       })
 
       return stores

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Replace store IDs with CMS `page_id`
+
 ## [0.0.9] - 2021-01-22
 
 ### Added

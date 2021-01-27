@@ -19,7 +19,7 @@ type SitemapData {
 }
 
 type Stores {
-  id: String
+  pageId: String
   name: String
   description: String
   address: Address
@@ -30,7 +30,7 @@ type Stores {
 }
 
 type Store {
-  id: String
+  pageId: String
   name: String
   description: String
   logo: Image
