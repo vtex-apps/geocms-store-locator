@@ -1,7 +1,7 @@
 type Query {
-  allStores: AllStoresResult @cacheControl(scope: PUBLIC, maxAge: MEDIUM)
+  allStores: AllStoresResult @cacheControl(scope: PUBLIC, maxAge: LONG)
   stores(latitude: Float, longitude: Float): StoresResult
-    @cacheControl(scope: PUBLIC, maxAge: MEDIUM)
+    @cacheControl(scope: PUBLIC, maxAge: LONG)
   store(id: String, amenities: [String]): StoreResult
-    @cacheControl(scope: PUBLIC, maxAge: MEDIUM)
+    @cacheControl(scope: PUBLIC, maxAge: LONG)
 }
