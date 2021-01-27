@@ -5,8 +5,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "co-body": "^6.0.0",
-    "slugify": "^1.2.6"
+    "co-body": "^6.0.0"
   },
   "devDependencies": {
     "@types/co-body": "^0.0.3",

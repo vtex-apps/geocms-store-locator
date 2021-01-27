@@ -1,31 +1,11 @@
 import { GraphQLError } from '../graphql/GraphQLError'
 import { formatBusinessHours } from '../utils/formatBusinessHours'
-import { parseStoreParams } from '../utils/parseStoreParams'
-import { queries } from '.'
 import type {
   GeoCMSResponse,
   HolidayHours,
   StoreDetail,
   StoreGraphQL,
 } from '../typings/stores'
-
-const storeIdLookup: { [key: string]: string } = {}
-
-const setstoreIdLookupTable = async (ctx: Context) => {
-  try {
-    const { results } = await queries.allStores(null, null, ctx)
-
-    for (const store of results) {
-      const parts = store.url.split('/')
-
-      storeIdLookup[parts[parts.length - 1]] = store.id
-    }
-  } catch (err) {
-    ctx.vtex.logger.error({
-      message: 'Error creating store ID lookup table',
-    })
-  }
-}
 
 export const store = async (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,10 +26,6 @@ export const store = async (
     customPath,
   } = await apps.getAppSettings(appId)
 
-  if (!storeIdLookup[id]) {
-    await setstoreIdLookupTable(ctx)
-  }
-
   let response: GeoCMSResponse
 
   try {
@@ -57,7 +33,7 @@ export const store = async (
       appLicense,
       appProject,
       appKey,
-      id: storeIdLookup[id],
+      id,
     })
   } catch (error) {
     throw new TypeError(error.msg)
@@ -74,12 +50,13 @@ export const store = async (
   }
 
   const [mktg] = response.layers[0].objects[0].data.MKTG
+  const [{ page_id: pageId }] = response.layers[0].objects[0].data.SEO
   const specialHours = response.layers[0].objects[0].data.SPECIAL_HOURS
   const img = response.layers[0].objects[0].data.IMG
   const { lng, lat } = response.layers[0].objects[0].geom
 
   const storeDetail: StoreDetail = {
-    id: parseStoreParams(mktg.Store_name),
+    pageId,
     name: mktg.Store_name,
     description: mktg.description,
     address: {
@@ -166,7 +143,7 @@ export const store = async (
     return {
       '@context': 'https://schema.org',
       '@type': 'Store',
-      '@id': `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
+      '@id': `https://${ctx.vtex.host}/${customPath}/${storeDetail.pageId}`,
       name: storeDetail.name,
       image: storeDetail.images.map((i) => i.url),
       telephone: storeDetail.contacts.mainPhone,
@@ -183,7 +160,7 @@ export const store = async (
         latitude,
         longitude,
       },
-      url: `https://${ctx.vtex.host}/${customPath}/${storeDetail.id}`,
+      url: `https://${ctx.vtex.host}/${customPath}/${storeDetail.pageId}`,
       openingHoursSpecification: storeDetail.businessHours.reduce(
         (schema: Array<Record<string, string | string[]>>, hours) => {
           hours.openIntervals.forEach((i) => {

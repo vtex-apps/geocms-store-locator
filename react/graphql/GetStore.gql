@@ -2,7 +2,7 @@ query getStore($id: String!, $amenities: [String])
 @context(provider: "vtex.geocms-store-locator") {
   store(id: $id, amenities: $amenities) {
     results {
-      id
+      pageId
       name
       description
       logo {

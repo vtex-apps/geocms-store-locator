@@ -63,7 +63,7 @@ const Listing: StorefrontFunctionComponent<ListingProps> = ({
                     className={`${handles.storeListStoreLink} b no-underline underline-hover`}
                     page="store.storedetail"
                     params={{
-                      store_id: item.id,
+                      store_id: item.pageId,
                     }}
                   >
                     {item.name}

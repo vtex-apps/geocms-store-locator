@@ -136,7 +136,7 @@ export interface StoreGraphQL {
 }
 
 interface Store {
-  id: string
+  pageId: string
   name: string
   description: string
   address: Address

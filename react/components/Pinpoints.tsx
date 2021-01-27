@@ -66,7 +66,7 @@ const Pinpoints = withScriptjs(
       navigate({
         page: 'store.storedetail',
         params: {
-          store_id: item.id,
+          store_id: item.pageId,
         },
       })
     }
@@ -96,16 +96,16 @@ const Pinpoints = withScriptjs(
               icon={icon?.url}
               position={{ lat: latitude, lng: longitude }}
               onClick={() => {
-                handleMarkState(item.id)
+                handleMarkState(item.pageId)
               }}
             >
-              {(state.markerState[item.id] ||
+              {(state.markerState[item.pageId] ||
                 (Object.getOwnPropertyNames(state.markerState).length === 0 &&
                   lat === latitude &&
                   lng === longitude)) && (
                 <InfoWindow
                   onCloseClick={() => {
-                    handleMarkState(item.id)
+                    handleMarkState(item.pageId)
                   }}
                 >
                   <div className={`t-mini ${handles.markerInfo}`}>

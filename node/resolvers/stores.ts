@@ -3,7 +3,6 @@ import { LogLevel } from '@vtex/api'
 import { GraphQLError } from '../graphql/GraphQLError'
 import { formatBusinessHours } from '../utils/formatBusinessHours'
 import type { GeoCMSResponse, Store, StoresGraphQL } from '../typings/stores'
-import { parseStoreParams } from '../utils/parseStoreParams'
 
 interface StoresArgs {
   latitude?: number
@@ -70,10 +69,11 @@ export const stores = async (
       }
 
       const [mktg] = data.MKTG
+      const [{ page_id: pageId }] = data.SEO
       const { lng, lat } = geom
 
       storesData.push({
-        id: parseStoreParams(mktg.Store_name),
+        pageId,
         name: mktg.Store_name,
         description: mktg.description,
         address: {

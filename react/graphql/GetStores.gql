@@ -2,7 +2,7 @@ query getStores($latitude: Float, $longitude: Float)
 @context(provider: "vtex.geocms-store-locator") {
   stores(latitude: $latitude, longitude: $longitude) {
     results {
-      id
+      pageId
       name
       description
       address {

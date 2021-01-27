@@ -69,7 +69,7 @@ export default class GeoCMS extends ExternalClient {
     appKey,
     id,
   }: GetStoreArgs): Promise<GeoCMSResponse> {
-    const endpoint = `/read/object/text?project=${appProject}&frontend=rest&key=${appLicense}&encoding=utf-8&query=[cod_mag]=[${id}]`
+    const endpoint = `/read/object/text?project=${appProject}&frontend=rest&key=${appLicense}&encoding=utf-8&query=[page_id]=[${id}]`
     const signedEndpoint = `${endpoint}&tk=${this.getToken(appKey, endpoint)}`
 
     return this.http.get(signedEndpoint, {
