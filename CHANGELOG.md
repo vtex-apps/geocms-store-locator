@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Store Image Banner not displaying images. Replaced depreciated Slider component with Slider Layout component
+
 ## [0.0.10] - 2021-01-27
 
 ### Added

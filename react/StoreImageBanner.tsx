@@ -1,39 +1,42 @@
 import React, { useContext } from 'react'
 import { defineMessages } from 'react-intl'
-import { useCssHandles } from 'vtex.css-handles'
-import { Slider } from 'vtex.store-components'
+import { useCssHandles, useCustomClasses } from 'vtex.css-handles'
+import { SliderLayout } from 'vtex.slider-layout'
 
 import { StoreContext } from './contexts/StoreContext'
 
 const CSS_HANDLES = ['imageBannerContainer', 'imageBannerListItem'] as const
+const sliderClasses = {
+  slideChildrenContainer: 'ph8 mv8',
+}
 
 const StoreImageBanner: StorefrontFunctionComponent = () => {
   const handles = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
+  const classes = useCustomClasses(() => sliderClasses)
 
   if (!store) {
     return null
   }
 
   const sliderSettings = {
-    className: 'ph8 mw8 mv8',
-    dots: true,
+    showNavigationArrows: 'desktopOnly',
+    showPaginationDots: 'desktopOnly',
     infinite: true,
-    slidesToScroll: 1,
-    slidesToShow: 1,
-    autoplay: true,
-    speed: 500,
+    itemsPerPage: { desktop: 1, tablet: 1, phone: 1 },
+    autoplay: { timeout: 4000, stopOnHover: false },
+    classes,
   }
 
   return (
-    <div className={`${handles.imageBannerContainer}`}>
-      <Slider sliderSettings={sliderSettings}>
+    <div className={`${handles.imageBannerContainer} mw8`}>
+      <SliderLayout {...sliderSettings}>
         {store.images.map((image, i) => (
-          <div className={`${handles.imageBannerListItem}`} key={i}>
+          <div className={`${handles.imageBannerListItem} `} key={i}>
             <img src={image.url} alt="Store" />
           </div>
         ))}
-      </Slider>
+      </SliderLayout>
     </div>
   )
 }
