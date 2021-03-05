@@ -11,7 +11,7 @@ const sliderClasses = {
 }
 
 const StoreImageBanner: StorefrontFunctionComponent = () => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
   const classes = useCustomClasses(() => sliderClasses)
 

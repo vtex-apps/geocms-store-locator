@@ -30,7 +30,7 @@ const Listing: StorefrontFunctionComponent<ListingProps> = ({
   items,
   onChangeCenter,
 }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   const handleChangeCenter = (item: Store, zoom: number) => {
     const { latitude, longitude } = item.location

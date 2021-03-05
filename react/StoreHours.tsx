@@ -26,7 +26,7 @@ interface StoreHoursProps {
 }
 
 const StoreHours: StorefrontFunctionComponent<StoreHoursProps> = ({ intl }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
 
   if (!store) {

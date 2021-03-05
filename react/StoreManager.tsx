@@ -11,7 +11,7 @@ const CSS_HANDLES = [
 ] as const
 
 const StoreManager: StorefrontFunctionComponent = () => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
 
   if (!store) {
