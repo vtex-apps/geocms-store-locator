@@ -7,7 +7,7 @@ import { StoreContext } from './contexts/StoreContext'
 const CSS_HANDLES = ['titleText'] as const
 
 const StoreTitle: StorefrontFunctionComponent = () => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
 
   if (!store) {

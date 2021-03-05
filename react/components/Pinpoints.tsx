@@ -43,7 +43,7 @@ const Pinpoints = withScriptjs(
       markerState: {},
     })
 
-    const handles = useCssHandles(CSS_HANDLES)
+    const { handles } = useCssHandles(CSS_HANDLES)
 
     const { navigate } = useRuntime()
 

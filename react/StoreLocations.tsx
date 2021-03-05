@@ -44,7 +44,7 @@ const StoreLocations: StorefrontFunctionComponent<StoreLocationsProps> = ({
     undefined
   )
 
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
 
   const handleCenter = (lon: number, lat: number, zoomSize: number) => {
     setMapCoordinates([lon, lat])

@@ -16,7 +16,7 @@ const StoreLogo: StorefrontFunctionComponent<StoreLogoProps> = ({
   width,
   height,
 }) => {
-  const handles = useCssHandles(CSS_HANDLES)
+  const { handles } = useCssHandles(CSS_HANDLES)
   const store = useContext(StoreContext)
 
   if (!store) {
