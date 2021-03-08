@@ -51,7 +51,7 @@ export const store = async (
 
   const [mktg] = response.layers[0].objects[0].data.MKTG
   const [{ page_id: pageId }] = response.layers[0].objects[0].data.SEO
-  const specialHours = response.layers[0].objects[0].data.SPECIAL_HOURS
+  const specialHours = response.layers[0].objects[0].data.SPECIAL_HOURS || []
   const img = response.layers[0].objects[0].data.IMG
   const { lng, lat } = response.layers[0].objects[0].geom
 
