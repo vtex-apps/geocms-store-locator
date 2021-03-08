@@ -24,7 +24,7 @@ interface Geo {
 }
 
 interface StoreData {
-  SPECIAL_HOURS: SpecialHours[]
+  SPECIAL_HOURS?: SpecialHours[]
   IMG?: Img[]
   MKTG?: Mktg[]
   social: GeoCMSSocial[]
