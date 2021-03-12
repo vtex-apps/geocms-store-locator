@@ -26,9 +26,9 @@ const StoreAddress: StorefrontFunctionComponent = () => {
       <div className={`${handles.addressBlock} t-body`}>
         {street ? `${street} ` : ''}
         <br />
-        {city ? `${city}` : ''}
-        {state ? `, ${state}` : ''}
-        {postalCode ? `, ${postalCode}` : ''}
+        {postalCode ? `${postalCode}, ` : ''}
+        {city ? `${city}, ` : ''}
+        {state ? `${state}` : ''}
       </div>
       <div
         className={`${handles.addressDirectionsContainer} mh7 flex items-center justify-center`}
