@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Reduce cache time for graphql queries
+
 ## [0.0.13] - 2021-03-12
 
 ### Fixed
